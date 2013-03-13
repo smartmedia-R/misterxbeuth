@@ -4,7 +4,7 @@ session_start();
 if ($_SESSION['angemeldet'] == false) {
 	header('location: login.php');
 	exit ;
-}/**/
+}
 $actor = $_SESSION["actor"];
 $con = mysql_connect($host_db, $user_db, $passwort_db);
 mysql_select_db($db, $con);
@@ -189,11 +189,6 @@ if (!$con) {
 
 				switch($actor) {
 					case'MisterX' :
-						$sql4 = "SELECT * FROM Coord  WHERE statusmrx=NULL";
-						$result4 = mysql_query($sql4);
-						while ($row4 = mysql_fetch_array($result4)) {
-							echo "<div class='stand' align='center' id=" . $row4['coordID'] . " style='width:50px;height: 50px; background-color:#F00;position:absolute;border: solid medium #000; left:" . $row4['xAchse'] . "px; top:" . $row4['yAchse'] . "px;'>" . $row4['coordID'] . "</div>";
-						}
 						$sql2 = "SELECT * FROM Coord WHERE statusmrx=1";
 						$result2 = mysql_query($sql2);
 						while ($row2 = mysql_fetch_array($result2)) {
@@ -210,7 +205,44 @@ if (!$con) {
 							}
 
 						}
-						break;
+					break;
+					case'Detectiv' :
+						$sql="SELECT * FROM Coord WHERE statusdet=1";
+						$result= mysql_query($sql);
+						while ($row = mysql_fetch_array($result)) {
+							?>
+							<div class='stand'  align='center' id="<?php echo $row['coordID']?>  "  
+								style='width:50px;
+								height: 50px; 
+								background-color:#00F;
+								position:absolute;
+								border: solid medium #000; 
+								left: <?php echo $row['xAchse'] ?> px;
+								top: <?php echo $row['yAchse'] ?> px;'>
+								<?php echo $row['coordID'] ?> 
+							</div>
+							
+						<?php	
+						}
+							$sql2="SELECT * FROM Coord WHERE statusdet!=1";
+							$result2= mysql_query($sql2);
+							while ($row2 = mysql_fetch_array($result2)) {
+								?>
+								<div class='standClickable'  align='center' id="<?php echo $row2['coordID']?>  "  
+									style='width:50px;
+									height: 50px; 
+									background-color:#F00;
+									position:absolute;
+									border: solid medium #000; 
+									left: <?php echo $row2['xAchse'] ?> px;
+									top: <?php echo $row2['yAchse'] ?> px;'>
+									<?php echo $row2['coordID'] ?> 
+								</div>
+							
+						<?php	
+						}
+					
+					break;
 				}
 				?>
 			</div>
