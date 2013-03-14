@@ -1,0 +1,113 @@
+
+.standClickable:hover {
+    background-color: #7AA100;
+}
+
+#rot:hover {
+    background: #FF0000;
+    color: #FFF;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+
+#rot {
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-bottom-left-radius: 10px 18px;
+    border-bottom-right-radius: 10px 18px;
+    border-top-left-radius: 10px 18px;
+    border-top-right-radius: 10px 18px;
+    padding: 2px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+    background-color: #CC0000;
+    width: 80px;
+    text-align: center;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+#gruen:hover {
+    background: #00FF00;
+    color: #FFF;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+
+#gruen {
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-bottom-left-radius: 10px 18px;
+    border-bottom-right-radius: 10px 18px;
+    border-top-left-radius: 10px 18px;
+    border-top-right-radius: 10px 18px;
+    padding: 2px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+    background-color: #00CC00;
+    width: 80px;
+    text-align: center;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+#blau:hover {
+    background: #0000FF;
+    color: #FFF;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+
+#blau {
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-bottom-left-radius: 10px 18px;
+    border-bottom-right-radius: 10px 18px;
+    border-top-left-radius: 10px 18px;
+    border-top-right-radius: 10px 18px;
+    padding: 2px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+    background-color: #0000CC;
+    width: 80px;
+    text-align: center;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+#schwarz:hover {
+    color: #FFF;
+    background-color: #999999;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+
+#schwarz {
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-bottom-left-radius: 10px 18px;
+    border-bottom-right-radius: 10px 18px;
+    border-top-left-radius: 10px 18px;
+    border-top-right-radius: 10px 18px;
+    padding: 2px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+    background-color: #000000;
+    width: 80px;
+    text-align: center;
+    background-image: url(../images/grd2.png);
+    background-repeat: repeat-x;
+}
+
+.stand{
+    width:50px;
+    height: 50px;
+    background-color:#0F0;
+    position:absolute;
+    border: solid medium #000;
+}
+.standClickable{
+    width:50px;
+    height: 50px;
+    background-color:#00F;
+    position:absolute;
+    border: solid medium #000;
+
+}
