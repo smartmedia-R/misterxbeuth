@@ -21,7 +21,7 @@ if(isset( $_POST['logout'])){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 
 <title>Unbenanntes Dokument</title>
 </head>
