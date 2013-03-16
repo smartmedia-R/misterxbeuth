@@ -100,14 +100,13 @@
     width:50px;
     height: 50px;
     background-color:#0F0;
-    position:absolute;
     border: solid medium #000;
+    position:absolute;
 }
 .standClickable{
     width:50px;
     height: 50px;
     background-color:#00F;
-    position:absolute;
     border: solid medium #000;
-
+    position:absolute;
 }

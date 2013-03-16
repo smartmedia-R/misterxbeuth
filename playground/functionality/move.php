@@ -13,15 +13,6 @@ mysql_select_db ( $db, $con );
 if (! $con) {
 	echo ('Could not connect: ' . mysql_error ());
 }
-
-
-$sql="UPDATE ticket SET Value=".$value." WHERE SpielerID=".$id_player." AND Color='".$ticket."'";
-mysql_query($sql);
-$sql2="UPDATE Coord SET statusmrx=NULL WHERE statusmrx=1";
-mysql_query($sql2);
-$sql3="UPDATE Coord SET statusmrx=1 WHERE CoordID=$coord";
-mysql_query($sql3);
-
-
-
-?>
+mysql_query("UPDATE ticket SET Value=".$value." WHERE SpielerID=".$id_player." AND Color='".$ticket."'");
+mysql_query("UPDATE Coord SET statusmrx=NULL WHERE statusmrx=1");
+mysql_query("UPDATE Coord SET statusmrx=1 WHERE CoordID=$coord");
