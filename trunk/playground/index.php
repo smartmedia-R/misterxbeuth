@@ -2,48 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/required/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/index/main.js"></script>
 <title>registration</title>
-
-<script>
-	function linkToLogin(){
-			document.location.href='login/login.php';
-	}
-		
-	$(document).ready(function(e) {		        	
-		$("#form").submit(function(){
-				var formData = new FormData($(this)[0]);		
-			$.ajax({
-				url: 'registration_script.php',
-				type: 'POST',
-				data: formData,
-				async: false,
-				success: function (data) {
-					if($.trim(data)==='der Eintrag wurde eingefügt'){
-						document.location.href='geheim.php';
-					}if($.trim(data)==="The reCAPTCHA wasn't entered correctly. Go back and try it again."){
-						alert(data);
-						document.location.href='index.php';
-						
-					}else{
-						alert(data);
-					}
-    			},
-				cache: false,
-				contentType: false,
-				processData: false
-			});			
-			return false;			 
-		});
- 	});
-</script>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="response">
 			<p>Registration</p>
 		</div>
-
 		<form id="form" method="post">
 			<table id="table" border="0">
 				<tr>
@@ -76,12 +43,12 @@
 					?>       
         	</div>
 			<div id="button_form">
-				<input id="buttons" name="back" type="button" size="20"
-					value="Zurück" onclick="backToIndex()" /> 
                     <input id="buttons" name="submit" type="submit" size="20" value="Absenden" />
 			</div>
 		</form>
 	</div>
-
+    <script type="text/javascript">
+        login.init();
+    </script>
 </body>
 </html>

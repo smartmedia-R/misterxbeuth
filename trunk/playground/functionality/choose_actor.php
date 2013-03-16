@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../db_login_data.php';
+include 'db_login_data.php';
 $id =$_SESSION ['id'] ;
 $actor=$_POST['choose_actor'];
 $id_player=$_SESSION['id_player'];
