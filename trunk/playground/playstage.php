@@ -6,6 +6,7 @@ if ($_SESSION['angemeldet'] == false) {
 	exit ;
 }
 $actor = $_SESSION["actor"];
+echo $actor;
 $con = mysql_connect($host_db, $user_db, $passwort_db);
 mysql_select_db($db, $con);
 if (!$con) {
@@ -19,7 +20,6 @@ if (!$con) {
         <script type="text/javascript" src="js/main.js"></script>
         <script>
             $(document).ready(function(e) {
-
                 $('.standClickable').click(function() {
                     if (document.getElementById('id').value == "" && document.getElementById('value').value == "") {
                         alert('bitte erst ticket auswählen');
@@ -31,59 +31,48 @@ if (!$con) {
                                 coord : $(this).attr('id'),
                                 ticket : document.getElementById('id').value,
                                 value : document.getElementById('value').value
-
                             },
                             async : false,
                             success : function(data) {
-                                //  alert(data);
                                 document.location.href = 'playstage.php'
                             }
                         });
                     }
                 });
-
             });
         </script>
         <link rel="stylesheet" href="style/style.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>playstage</title>
 	</head>
-
 	<body>
 		<div id="wrapper" >
 			<input type="hidden" name="id" id="id" value="" />
 			<input type="hidden" name="value" id="value" value="" />
-
 			<div id="buttons">
-				<!--<input onclick='clickButton(this.id)' id='gruen' type='button' name='gruen' value='4'>-->
 				<?php
-				$sql = "SELECT * FROM ticket WHERE SpielerID=" . $_SESSION['id_player'];
-				$result = mysql_query($sql);
-
+				$result = mysql_query("SELECT * FROM ticket WHERE SpielerID=" . $_SESSION['id_player']);
 				while ($row = mysql_fetch_array($result))
                 {
 			        if (!($row['Value'] == 0))
                     {
                     ?>
 						<input onclick='clickButton(this.id)' 
-							id= "<?php echo$row['Color']?> " 
+							id= "<?php echo$row['Color']?>"
 							type='button' 
-							name="<?php echo $row['Color'] ?>" 
-							value=" <?php echo $row['Value'] ?> "
+							name="<?php echo $row['Color']?>"
+							value="<?php echo $row['Value']?>"
 						/>
-					
 			        <?php
-                    }
-                    else
-                    {
+                    }else{
                     ?>
 						<input 
 							disabled='disabled' 
 							onclick='clickButton(this.id)' 
-							id=" <?php echo $row['Color'] ?> " 
+							id="<?php echo $row['Color']?>"
 							type='button' 
-							name=" <?php echo $row['Color'] ?> "
-							value=" <?php echo $row['Value'] ?> "
+							name="<?php echo $row['Color']?>"
+							value="<?php echo $row['Value']?>"
 						>
                     <?php
 					}
@@ -96,59 +85,58 @@ if (!$con) {
 
 				switch($actor) {
 					case'MisterX' :
-						$sql2 = "SELECT * FROM Coord WHERE statusmrx=1";
-						$result2 = mysql_query($sql2);
+
+						$result2 = mysql_query("SELECT * FROM Coord WHERE statusmrx=1");
 						while ($row2 = mysql_fetch_array($result2))
                         {
 				        ?>
-							<div class='stand' align='center' id=" <?php echo $row2['coordID']?>"
-								style=" left:<?php echo $row2['xAchse']?>px; top:<?php echo $row2['yAchse'] ?>px;">
+							<div class='stand' align='center' id="<?php echo $row2['coordID']?>"
+								style="left:<?php echo $row2['xAchse']?>px; top:<?php echo $row2['yAchse'] ?>px;">
 								<?php echo $row2['coordID']?>
 							</div>
 
 				        <?php
-							$sql3 = "SELECT * FROM neighbors WHERE coordID='" . $row2['coordID'] . "'";
-							$result3 = mysql_query($sql3);
+							$result3 = mysql_query("SELECT * FROM neighbors WHERE coordID='". $row2['coordID'] ."'");
 							while ($row3 = mysql_fetch_array($result3))
                             {
-								$sql3_1 = "SELECT * FROM Coord WHERE CoordID=" . $row3['CoordID_Neighbor'];
-								$result3_1 = mysql_query($sql3_1);
+								$result3_1 = mysql_query("SELECT * FROM Coord WHERE CoordID=".$row3['CoordID_Neighbor']);
 								while ($row3_1 = mysql_fetch_array($result3_1))
                                 {
 								?>
-									<div class='standClickable' align='center' id="<?php echo $row3_1['coordID'] ?>"
-										style='left:<?php $row3_1['xAchse']?>px; top:<?php echo $row3_1['yAchse']?>px;'>
+									<div class='standClickable' align='center' id="<?php echo $row3_1['coordID']?>"
+										style='left:<?php echo $row3_1['xAchse']?>px; top:<?php echo $row3_1['yAchse']?>px;'>
 										<?php echo $row3_1['coordID']?>
 									</div>
 				                <?php
 								}
+                                //$resultx= mysql_query("SELECT * FROM Coord WHERE coordID NOT IN(".$row3_1['coordID'].")");
 							}
+
 						}
 					break;
-					case'Detectiv' :
-						$sql="SELECT * FROM Coord WHERE statusdet=1";
-						$result= mysql_query($sql);
-						while ($row = mysql_fetch_array($result))
+                    case'Detektiv' :
+                        $result1= mysql_query("SELECT * FROM Coord WHERE statusdet=1");
+                        while ($row1 = mysql_fetch_array($result1))
                         {
-				        ?>
-							<div class='stand' align='center' id="<?php echo $row['coordID']?>  "  
-								style='left: <?php echo $row['xAchse'] ?>px; top: <?php echo $row['yAchse'] ?>px;'>
-								<?php echo $row['coordID'] ?> 
-							</div>							
-				        <?php
-						}
-					    $sql2="SELECT * FROM Coord WHERE statusdet!=1";
-						$result2= mysql_query($sql2);
-						while ($row2 = mysql_fetch_array($result2))
+                            ?>
+                            <div class='stand' align='center' id="<?php echo $row1['coordID']?>"
+                                 style='left: <?php echo $row1['xAchse']?>px; top: <?php echo $row1['yAchse']?>px;'>
+                                <?php echo $row1['coordID'] ?>
+                            </div>
+                        <?php
+                        }
+                        $result2= mysql_query("SELECT * FROM Coord WHERE statusdet IS NULL");
+                        while ($row2 = mysql_fetch_array($result2))
                         {
-				        ?>
-							<div class='standClickable' align='center'  id="<?php echo $row2['coordID']?>  "
-								style='left: <?php echo $row2['xAchse'] ?>px; top: <?php echo $row2['yAchse'] ?>px;'>
-								<?php echo $row2['coordID'] ?>
-							</div>
-			            <?php
-						}					
-					break;
+                            ?>
+
+                            <div class='standClickable' align='center'  id="<?php echo $row2['coordID']?>"
+                                 style='left: <?php echo $row2['xAchse']?>px; top: <?php echo $row2['yAchse']?>px;'>
+                                <?php echo $row2['coordID']?>
+                            </div>
+                        <?php
+                        }
+                        break;
 				}
 		        ?>
 			</div>

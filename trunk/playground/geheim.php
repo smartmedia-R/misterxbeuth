@@ -36,11 +36,12 @@ $(document).ready(function(e) {
 				async: false,
 				success: function (data) {
 					alert(data);					
-					if($.trim(data)==='MisterX'){	
+					if($.trim(data)==='MisterX' || $.trim(data)==='Detektiv' ){
 						document.location.href='playstage.php';	
-					}else if($.trim(data)==='MisterX_Actor ist schon belegt, bitte wählen Sie Detectiv als Actor'){
-						alert(data);
-						document.location.href='geheim.php';
+					}else if($.trim(data)==='MisterX_Actor ist schon belegt, bitte wählen Sie Detectiv als Actor' ||
+                        $.trim(data)==='Detektiv_Actor ist schon belegt, bitte wählen Sie MisterX als Actor'){
+                            alert(data);
+                            document.location.href='geheim.php';
 					}
     			},
 				cache: false,

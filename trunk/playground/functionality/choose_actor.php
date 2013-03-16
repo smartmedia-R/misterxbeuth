@@ -11,46 +11,37 @@ if (! $con) {
 	echo ('Could not connect: ' . mysql_error ());
 } else {
 	switch ($actor) {
-		case 'MisterX':	
-		$sql="SELECT COUNT(*) FROM tablespieler WHERE MisterX='1'";
-		$result= mysql_query($sql);
-		$einzeln = mysql_fetch_row ($result);
-		if($einzeln[0]==0){
-			$sql1="UPDATE tableSpieler SET MisterX ='1',CoordID='1' WHERE UserID= $id ";
-			mysql_query($sql1);
-			//lege die Tickets für misterX an
-			$sql2="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('gruen', '2', '$id_player')";
-			mysql_query($sql2);
-			$sql3="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('blau', '3', '$id_player')";
-			mysql_query($sql3);
-			$sql4="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('rot', '2', '$id_player')";
-			mysql_query($sql4);
-			$sql5="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('schwarz', '1', '$id_player')";
-			mysql_query($sql5);
-			
-			$_SESSION['actor']='MisterX';
-			echo 'MisterX';
-		}else{echo "MisterX_Actor ist schon belegt, bitte wählen Sie Detectiv als Actor";}
+		case 'MisterX':
+            $result= mysql_query("SELECT COUNT(*) FROM tablespieler WHERE MisterX='1'");
+            $einzeln = mysql_fetch_row ($result);
+            if($einzeln[0]==0){
+                mysql_query("UPDATE tableSpieler SET MisterX ='1',CoordID='1' WHERE UserID=".$id );
+                mysql_query("UPDATE Coord SET statusmrx=1 WHERE CoordID=1");
+                mysql_query("UPDATE ticket SET Value=2 WHERE SpielerID=".$id_player." AND Color='gruen'");
+                mysql_query("UPDATE ticket SET Value=3 WHERE SpielerID=".$id_player." AND Color='blau'");
+                mysql_query("UPDATE ticket SET Value=2 WHERE SpielerID=".$id_player." AND Color='rot'");
+                mysql_query("UPDATE ticket SET Value=1 WHERE SpielerID=".$id_player." AND Color='schwarz'");
+                $_SESSION['actor']='MisterX';
+                echo 'MisterX';
+            }else{
+                echo "MisterX_Actor ist schon belegt, bitte wählen Sie Detectiv als Actor";
+            }
 		break;
 		case 'Detektiv' :
-		//lege die Tickets für detektiv an
-			$sql6="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('gruen', '2', '$id_player')";
-			mysql_query($sql6);
-			$sql7="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('blau', '3', '$id_player')";
-			mysql_query($sql7);
-			$sql8="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('rot', '2', '$id_player')";
-			mysql_query($sql8);
-			$sql9="INSERT INTO ticket(Color, Value, SpielerID) VALUES ('schwarz', '1', '$id_player')";
-			mysql_query($sql9);	
-		$_SESSION['actor']='Detektiv';
-		echo 'Detektiv';
+            $result= mysql_query("SELECT COUNT(*) FROM tablespieler WHERE Detectiv='1'");
+            $einzeln = mysql_fetch_row ($result);
+            if($einzeln[0]==0){
+                mysql_query("UPDATE tableSpieler SET Detectiv ='1',CoordID='1' WHERE UserID=".$id );
+                mysql_query("UPDATE Coord SET statusdet=1 WHERE CoordID=9");
+                mysql_query("UPDATE ticket SET Value=2 WHERE SpielerID=".$id_player." AND Color='gruen'");
+                mysql_query("UPDATE ticket SET Value=3 WHERE SpielerID=".$id_player." AND Color='blau'");
+                mysql_query("UPDATE ticket SET Value=2 WHERE SpielerID=".$id_player." AND Color='rot'");
+                mysql_query("UPDATE ticket SET Value=1 WHERE SpielerID=".$id_player." AND Color='schwarz'");
+                $_SESSION['actor']='Detektiv';
+                echo 'Detektiv';
+            }else{
+                echo "Detektiv_Actor ist schon belegt, bitte wählen Sie MisterX als Actor";
+            }
 		break;
 	}
-	
-
 }
-
-
-
-
-?>
