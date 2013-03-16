@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Unbenanntes Dokument</title>
 </head>
-<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script>
 	$(document).ready(function(e) {
 

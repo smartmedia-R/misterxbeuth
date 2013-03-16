@@ -55,6 +55,3 @@ function db_connect() {
     {
         echo 'Die Anmeldung war fehlerhaft';
     }
-
-
-?>
