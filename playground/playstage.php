@@ -1,5 +1,5 @@
 <?php
-include 'db_login_data.php';
+include 'functionality/db_login_data.php';
 session_start();
 if ($_SESSION['angemeldet'] == false) {
 	header('location: login.php');
@@ -16,31 +16,8 @@ if (!$con) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-        <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-        <script>
-            $(document).ready(function(e) {
-                $('.standClickable').click(function() {
-                    if (document.getElementById('id').value == "" && document.getElementById('value').value == "") {
-                        alert('bitte erst ticket auswählen');
-                    } else {
-                        $.ajax({
-                            url : 'functionality/move.php',
-                            type : 'POST',
-                            data : {
-                                coord : $(this).attr('id'),
-                                ticket : document.getElementById('id').value,
-                                value : document.getElementById('value').value
-                            },
-                            async : false,
-                            success : function(data) {
-                                document.location.href = 'playstage.php'
-                            }
-                        });
-                    }
-                });
-            });
-        </script>
+        <script type="text/javascript" src="js/required/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="js/playstage/main.js"></script>
         <link rel="stylesheet" href="style/style.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>playstage</title>
@@ -77,7 +54,6 @@ if (!$con) {
                     <?php
 					}
 				}
-				
 				?>
 			</div>
 			<div id="playarea" >
@@ -85,7 +61,7 @@ if (!$con) {
 
 				switch($actor) {
 					case 'MisterX' :
-                        $actualStateMrX;
+                        $actualStateMrX="";
 						$result2 = mysql_query("SELECT * FROM Coord WHERE statusmrx=1");
 						while ($row2 = mysql_fetch_array($result2))
                         {
@@ -157,5 +133,8 @@ if (!$con) {
 		        ?>
 			</div>
 		</div>
+        <script type="text/javascript">
+            move.init();
+        </script>
 	</body>
 </html>

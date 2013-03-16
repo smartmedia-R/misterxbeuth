@@ -1,7 +1,7 @@
 <?php
 session_start();
 $id =$_SESSION ['id'] ;
-include '../db_login_data.php';
+include 'db_login_data.php';
 $id_player = $_SESSION['id_player'];
 $actor = $_SESSION["actor"];
 $ticket= $_POST ['ticket'];
