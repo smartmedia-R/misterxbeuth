@@ -20,7 +20,7 @@ var move = {
                     },
                     async : false,
                     success : function(data) {
-                        document.location.href = 'playstage.php'
+                        document.location.href = 'playstage.php';
                     }
                 });
             }
@@ -37,5 +37,19 @@ function clickButton(id) {
     } else {
         alert('das ticket ist schon ausgewählt')
     }
+
+}
+
+function gameOver(){
+    $.ajax({
+        url : 'functionality/gameover.php',
+        type : 'POST',
+        async : false,
+        success : function(data) {
+            document.location.href = 'geheim.php'
+        }
+    });
+
+
 
 }

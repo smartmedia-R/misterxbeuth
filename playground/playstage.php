@@ -29,32 +29,42 @@ if (!$con) {
 			<input type="hidden" name="value" id="value" value="" />
 			<div id="buttons">
 				<?php
-				$result = mysql_query("SELECT * FROM ticket WHERE SpielerID=" . $_SESSION['id_player']);
-				while ($row = mysql_fetch_array($result))
-                {
-			        if (!($row['Value'] == 0))
+                $sum=mysql_query("SELECT sum( Value )FROM ticket WHERE SpielerID=" . $_SESSION['id_player']);
+                $sumarray=mysql_fetch_array($sum);
+                if($sumarray ["sum( Value )"]!=0){
+				    $result = mysql_query("SELECT * FROM ticket WHERE SpielerID=" . $_SESSION['id_player']);
+                    while ($row = mysql_fetch_array($result))
                     {
+                        if (!($row['Value'] == 0))
+                        {
+                            ?>
+                                <input onclick='clickButton(this.id)'
+                                    id= "<?php echo$row['Color']?>"
+                                    type='button'
+                                    name="<?php echo $row['Color']?>"
+                                    value="<?php echo $row['Value']?>"
+                                />
+                            <?php
+                        }else{
+                            ?>
+                                <input
+                                    disabled='disabled'
+                                    onclick='clickButton(this.id)'
+                                    id="<?php echo $row['Color']?>"
+                                    type='button'
+                                    name="<?php echo $row['Color']?>"
+                                    value="<?php echo $row['Value']?>"
+                                >
+                            <?php
+                        }
+                    }
+				}else{
                     ?>
-						<input onclick='clickButton(this.id)' 
-							id= "<?php echo$row['Color']?>"
-							type='button' 
-							name="<?php echo $row['Color']?>"
-							value="<?php echo $row['Value']?>"
-						/>
-			        <?php
-                    }else{
-                    ?>
-						<input 
-							disabled='disabled' 
-							onclick='clickButton(this.id)' 
-							id="<?php echo $row['Color']?>"
-							type='button' 
-							name="<?php echo $row['Color']?>"
-							value="<?php echo $row['Value']?>"
-						>
-                    <?php
-					}
-				}
+                    <script type="text/javascript">
+                        alert("GAME OVER");
+                    </script>
+                <?php
+                }
 				?>
 			</div>
 			<div id="playarea" >
@@ -62,11 +72,33 @@ if (!$con) {
 
 				switch($actor) {
 					case 'MisterX' :
+                        $gegner=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE Detectiv=1"));
+                        $ich=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE MisterX=1"));
+                        if($ich['coordID']!=$gegner['coordID']){
                         renderPlaystage("statusmrx");
+                        }else{
+                            ?>
+                            <script type="text/javascript">
+                                alert("GAME OVER");
+                                gameOver();
+                            </script>
+                        <?php
+                        }
 					break;
                     case 'Detektiv' :
-                        renderPlaystage("statusdet");
-                        break;
+                        $gegner=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE MisterX=1"));
+                        $ich=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE Detectiv=1"));
+                        if($ich['coordID']!=$gegner['coordID']){
+                            renderPlaystage("statusdet");
+                        }else{
+                            ?>
+                            <script type="text/javascript">
+                                alert("YOU ARE WINNER");
+                                gameOver();
+                            </script>
+                        <?php
+                        }
+                    break;
 				}
 		        ?>
 			</div>

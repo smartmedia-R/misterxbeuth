@@ -12,6 +12,7 @@ if (! $con) {
 } else {
 	switch ($actor) {
 		case 'MisterX':
+
             $result= mysql_query("SELECT COUNT(*) FROM tablespieler WHERE MisterX='1'");
             $einzeln = mysql_fetch_row ($result);
             if($einzeln[0]==0){
@@ -31,6 +32,7 @@ if (! $con) {
             $result= mysql_query("SELECT COUNT(*) FROM tablespieler WHERE Detectiv='1'");
             $einzeln = mysql_fetch_row ($result);
             if($einzeln[0]==0){
+
                 mysql_query("UPDATE tableSpieler SET Detectiv ='1',CoordID='1' WHERE UserID=".$id );
                 mysql_query("UPDATE Coord SET statusdet=1 WHERE CoordID=9");
                 mysql_query("UPDATE ticket SET Value=2 WHERE SpielerID=".$id_player." AND Color='gruen'");
