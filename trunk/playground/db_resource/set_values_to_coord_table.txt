@@ -1,0 +1,6 @@
+INSERT INTO `neighbors`(`CoordID_Neighbor`, `coordID`) VALUES (<!--to-->, <!--from-->)
+
+example: from state 1 can go to 2,4,7
+    INSERT INTO neighbors(CoordID_Neighbor, coordID) VALUES (2, 1)
+    INSERT INTO neighbors(CoordID_Neighbor, coordID) VALUES (4, 1)
+    INSERT INTO neighbors(CoordID_Neighbor, coordID) VALUES (7, 1)

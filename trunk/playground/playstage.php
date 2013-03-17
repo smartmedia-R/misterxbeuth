@@ -1,5 +1,6 @@
 <?php
 include 'functionality/db_login_data.php';
+include 'functionality/renderPlaystage.php';
 session_start();
 if ($_SESSION['angemeldet'] == false) {
 	header('location: login.php');
@@ -61,73 +62,10 @@ if (!$con) {
 
 				switch($actor) {
 					case 'MisterX' :
-                        $actualStateMrX="";
-						$result2 = mysql_query("SELECT * FROM Coord WHERE statusmrx=1");
-						while ($row2 = mysql_fetch_array($result2))
-                        {
-                            $actualStateMrX = $row2['coordID'];
-				        ?>
-							<div class='stand' align='center' id="<?php echo $row2['coordID']?>"
-								style="left:<?php echo $row2['xAchse']?>px; top:<?php echo $row2['yAchse'] ?>px;">
-								<?php echo $row2['coordID']?>
-							</div>
-
-				        <?php
-							$result3 = mysql_query("SELECT * FROM neighbors WHERE coordID='". $row2['coordID'] ."'");
-
-							while ($row3 = mysql_fetch_array($result3))
-                            {
-								$result3_1 = mysql_query("SELECT * FROM Coord WHERE CoordID=".$row3['CoordID_Neighbor']);
-								while ($row3_1 = mysql_fetch_array($result3_1))
-                                {
-								?>
-
-									<div class='standClickable' align='center' id="<?php echo $row3_1['coordID']?>"
-										style='left:<?php echo $row3_1['xAchse']?>px; top:<?php echo $row3_1['yAchse']?>px;'>
-										<?php echo $row3_1['coordID']?>
-									</div>
-				                <?php
-								}
-
-							}
-                            $resultx= mysql_query("SELECT * FROM Coord WHERE coordID NOT IN
-                            (SELECT coordID_Neighbor FROM neighbors WHERE
-                            coordID=(SELECT coordID FROM Coord WHERE statusmrx=1))
-                            AND coordID NOT LIKE ". $actualStateMrX);
-                            while($rowx=mysql_fetch_array($resultx))
-                            {
-                                ?>
-                                <div class='standNotUseful' align='center' id="<?php echo $rowx['coordID']?>"
-                                     style="left:<?php echo $rowx['xAchse']?>px; top:<?php echo $rowx['yAchse'] ?>px;">
-                                    <?php echo $rowx['coordID']?>
-                                </div>
-                            <?php
-                            }
-
-						}
+                        renderPlaystage("statusmrx");
 					break;
                     case 'Detektiv' :
-                        $result1= mysql_query("SELECT * FROM Coord WHERE statusdet=1");
-                        while ($row1 = mysql_fetch_array($result1))
-                        {
-                            ?>
-                            <div class='stand' align='center' id="<?php echo $row1['coordID']?>"
-                                 style='left: <?php echo $row1['xAchse']?>px; top: <?php echo $row1['yAchse']?>px;'>
-                                <?php echo $row1['coordID'] ?>
-                            </div>
-                        <?php
-                        }
-                        $result2= mysql_query("SELECT * FROM Coord WHERE statusdet IS NULL");
-                        while ($row2 = mysql_fetch_array($result2))
-                        {
-                            ?>
-
-                            <div class='standClickable' align='center'  id="<?php echo $row2['coordID']?>"
-                                 style='left: <?php echo $row2['xAchse']?>px; top: <?php echo $row2['yAchse']?>px;'>
-                                <?php echo $row2['coordID']?>
-                            </div>
-                        <?php
-                        }
+                        renderPlaystage("statusdet");
                         break;
 				}
 		        ?>
