@@ -12,7 +12,7 @@ $fehlermeldung = '';
 // Funktion zum verbinden zur Datenbank
 function db_connect() {
 	
-	require_once '../db_login_data.php';
+	require_once 'db_login_data.php';
 	// Verbindung herstellen und Verbindungskennung zurückgeben
 	$conid = mysql_connect ( $host_db, $user_db, $passwort_db ) or die ( 'Verbindungsfehler!' );
 	if (is_resource ( $conid )) {

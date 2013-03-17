@@ -14,8 +14,8 @@ var choose_actor ={
                data: formData,
                async: false,
                success: function (data) {
-                   alert(data);
                    if($.trim(data)==='MisterX' || $.trim(data)==='Detektiv' ){
+                       alert(data);
                        document.location.href='playstage.php';
                    }else if($.trim(data)==='MisterX_Actor ist schon belegt, bitte wählen Sie Detectiv als Actor' ||
                        $.trim(data)==='Detektiv_Actor ist schon belegt, bitte wählen Sie MisterX als Actor'){
