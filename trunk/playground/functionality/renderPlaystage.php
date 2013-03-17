@@ -4,7 +4,6 @@
  * User: asavuskin
  * Date: 17.03.13
  * Time: 15:42
- * To change this template use File | Settings | File Templates.
  */
 function renderPlaystage($status){
 
@@ -39,7 +38,7 @@ function renderPlaystage($status){
         $resultx= mysql_query("SELECT * FROM Coord WHERE coordID NOT IN
                             (SELECT coordID_Neighbor FROM neighbors WHERE
                             coordID=(SELECT coordID FROM Coord WHERE ".$status."=1))
-                            AND coordID NOT LIKE ". $actualState);
+                            AND coordID NOT LIKE ".$actualState);
         while($rowx=mysql_fetch_array($resultx))
         {
             ?>
@@ -51,5 +50,7 @@ function renderPlaystage($status){
         }
 
     }
+
+
 
 }
