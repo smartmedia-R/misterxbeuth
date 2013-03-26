@@ -19,12 +19,26 @@ if (!$con) {
 	<head>
         <script type="text/javascript" src="js/required/jquery-1.8.3.js"></script>
         <script type="text/javascript" src="js/playstage/main.js"></script>
+        <script type="text/javascript">
+            var secs=5; //Sekunden einstellen
+            function docount(remaining){
+                if(remaining==0){ document.location.href="timer.php"; }
+                else{
+                    document.getElementById('countdown')
+                        .firstChild.nodeValue="Sie haben "+remaining+ " Sekunden um Zug zu machen";
+                    remain=remaining-1;
+                    setTimeout("docount(remain);",1000);
+                }
+            }
+            setTimeout("docount(secs);",100);
+        </script>
         <link rel="stylesheet" href="style/style.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>playstage</title>
 	</head>
 	<body>
 		<div id="wrapper" >
+            <span id="countdown">...</span>
 			<input type="hidden" name="id" id="id" value="" />
 			<input type="hidden" name="value" id="value" value="" />
 			<div id="buttons">
@@ -61,7 +75,7 @@ if (!$con) {
 				}else{
                     ?>
                     <script type="text/javascript">
-                        alert("GAME OVER");
+                        alert("GAME OVER Sie haben keine tickets mehr");
                     </script>
                 <?php
                 }
@@ -79,8 +93,8 @@ if (!$con) {
                         }else{
                             ?>
                             <script type="text/javascript">
-                                alert("GAME OVER");
-                                gameOver();
+                                alert("GAME OVER sie wurden von Detektiv erwischt");
+                                document.location.href = 'geheim.php'
                             </script>
                         <?php
                         }
@@ -95,6 +109,7 @@ if (!$con) {
                             <script type="text/javascript">
                                 alert("YOU ARE WINNER");
                                 gameOver();
+                                document.location.href = 'geheim.php'
                             </script>
                         <?php
                         }
@@ -103,6 +118,9 @@ if (!$con) {
 		        ?>
 			</div>
 		</div>
+        <div id="back_to_my_page">
+            <input onclick="back_to_geheim()" id="buttons" name="submit" type="submit" size="20" value="Zurück zum Login" />
+        </div>
         <script type="text/javascript">
             move.init();
         </script>

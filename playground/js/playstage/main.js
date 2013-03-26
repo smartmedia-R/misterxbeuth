@@ -20,7 +20,7 @@ var move = {
                     },
                     async : false,
                     success : function(data) {
-                        document.location.href = 'playstage.php';
+                        document.location.href = 'timer.php';
                     }
                 });
             }
@@ -39,17 +39,6 @@ function clickButton(id) {
     }
 
 }
-
-function gameOver(){
-    $.ajax({
-        url : 'functionality/gameover.php',
-        type : 'POST',
-        async : false,
-        success : function(data) {
-            document.location.href = 'geheim.php'
-        }
-    });
-
-
-
+function back_to_geheim(){
+    document.location.href="geheim.php";
 }

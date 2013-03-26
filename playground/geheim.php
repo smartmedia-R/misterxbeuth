@@ -1,7 +1,7 @@
 <?php
 session_start();
-echo "<div class='id'>".$_SESSION['id']."</div>";
-echo "<div class='id_player'>".$_SESSION['id_player']."</div>";
+echo "<div class='id'>user id".$_SESSION['id']."</div>";
+echo "<div class='id_player'> id player".$_SESSION['id_player']."</div>";
 if ($_SESSION['angemeldet'] == false){
 	 header( 'location: login.php' );
         exit;
@@ -19,6 +19,18 @@ if(isset( $_POST['logout'])){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="js/required/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="js/geheim/main.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        //document.location.href="functionality/gameover.php";
+        $.ajax({
+
+            url : 'functionality/gameover.php',
+            success : function(data) {
+                alert(data);
+            }
+        });
+    });
+</script>
 <title>my location</title>
 </head>
 <body>

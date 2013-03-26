@@ -30,12 +30,14 @@ if (! $con) {
 								VALUES ( '$value1','$value2','$value3','$value6')" );
 							$id = mysql_insert_id();
 							$_SESSION ['id'] = $id;
-							mysql_query ("INSERT INTO tablespieler( Beschreibung, UserID) VALUES ('$value1', '$id')");
+
+                            mysql_query ("INSERT INTO tablespieler( Beschreibung, UserID) VALUES ('$value1', '$id')");
+                            $_SESSION['id_player']=mysql_insert_id();
+
                             mysql_query("INSERT INTO ticket(Color, SpielerID) VALUES ('gruen', '$id')");
                             mysql_query("INSERT INTO ticket(Color, SpielerID) VALUES ('blau', '$id')");
                             mysql_query("INSERT INTO ticket(Color, SpielerID) VALUES ('rot', '$id')");
                             mysql_query("INSERT INTO ticket(Color, SpielerID) VALUES ('schwarz', '$id')");
-							$_SESSION['id_player']=mysql_insert_id();
 							$_SESSION ['angemeldet'] = true;
 							$_SESSION ['name'] = $value1;
 							echo "der Eintrag wurde eingefügt";							
