@@ -43,7 +43,8 @@
 					?>       
         	</div>
 			<div id="button_form">
-                    <input id="buttons" name="submit" type="submit" size="20" value="Absenden" />
+                    <input id="buttons" name="submit" type="submit" size="20" value="Zurück zum Login" />
+                    <input id="buttons" name="submit" type="submit" size="20" value="Regestrieren" />
 			</div>
 		</form>
 	</div>
