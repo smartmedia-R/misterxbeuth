@@ -18,7 +18,7 @@ var login= {
                         document.location.href='geheim.php';
                     }if($.trim(data)==="The reCAPTCHA wasn't entered correctly. Go back and try it again."){
                         alert(data);
-                        document.location.href='index.php';
+                        document.location.href='registration.php';
 
                     }else{
                         alert(data);

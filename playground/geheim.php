@@ -3,14 +3,14 @@ session_start();
 echo "<div class='id'>user id".$_SESSION['id']."</div>";
 echo "<div class='id_player'> id player".$_SESSION['id_player']."</div>";
 if ($_SESSION['angemeldet'] == false){
-	 header( 'location: login.php' );
+	 header( 'location: index.html' );
         exit;
 }
 $test =$_SESSION['name'];
 if(isset( $_POST['logout'])){
 	session_destroy();
 	$_SESSION['angemeldet'] == false;
-	header( 'location: login.php' );		
+	header( 'location: index.html' );
 }		
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

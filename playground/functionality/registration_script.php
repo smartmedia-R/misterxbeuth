@@ -2,7 +2,7 @@
 session_start();
 include 'db_login_data.php';
 require_once ('../recaptcha-php-1.11/recaptchalib.php');
-$privatekey = "6LcAJtoSAAAAAIJ9MHr5zX1EXfNi7jHlr4l_hObg ";
+$privatekey = "--------------------------------------";
 $resp = recaptcha_check_answer ( $privatekey, $_SERVER ["REMOTE_ADDR"], 
 								 $_POST ["recaptcha_challenge_field"], 
 								 $_POST ["recaptcha_response_field"] );

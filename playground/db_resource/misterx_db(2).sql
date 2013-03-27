@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `alleuser` (
 --
 
 INSERT INTO `alleuser` (`UserID`, `Name`, `Vorname`, `Email`, `Passwort`) VALUES
-(1, 'alex', 'test_test', 'alex_test@mail.com', '1c115776ec3071438831f26f472fbfbc'),
+(1, 'alex', 'test_test', 'alex_test@mail.com', '1c115776ec3071438831f26f472fbfbc');
 
 
 -- --------------------------------------------------------
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `coord` (
 --
 
 INSERT INTO `coord` (`coordID`, `xAchse`, `yAchse`, `statusmrx`, `statusdet`) VALUES
-(1, 100, 100, 1, 1),
+(1, 100, 100, NULL, NULL),
 (2, 300, 100, NULL, NULL),
 (3, 500, 100, NULL, NULL),
 (4, 200, 300, NULL, NULL),
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `tablespieler` (
 --
 
 INSERT INTO `tablespieler` (`SpielerID`, `Beschreibung`, `MisterX`, `Detectiv`, `UserID`, `coordID`) VALUES
-(1, 'rrrrr', NULL, NULL, 1, NULL),
+(1, 'rrrrr', NULL, NULL, 1, NULL);
 
 
 -- --------------------------------------------------------
