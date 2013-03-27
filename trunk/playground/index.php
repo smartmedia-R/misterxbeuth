@@ -43,7 +43,7 @@
 					?>       
         	</div>
 			<div id="button_form">
-                    <input id="buttons" name="submit" type="submit" size="20" value="Zurück zum Login" />
+                    <input id="buttons" name="backToLogin" type="button" size="20" onclick="window.location.href='login.php';" value="Zurück zum Login" />
                     <input id="buttons" name="submit" type="submit" size="20" value="Regestrieren" />
 			</div>
 		</form>
