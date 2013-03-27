@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/* Einfache fließende Medien
+   Hinweis: Für fließende Medien müssen Sie die Attribute 'height' und 'width' des Medium aus dem HTML-Code entfernen
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+img, object, embed, video {
+	max-width: 100%;
+}
+/* IE 6 unterstützt keine maximale Breite, verwenden Sie daher eine Standardbreite von 100% */
+.ie6 img {
+	width:100%;
+}
+
+/*
+	Dreamweaver-Eigenschaften für fließende Raster
+	----------------------------------
+	dw-num-cols-mobile:		5;
+	dw-num-cols-tablet:		8;
+	dw-num-cols-desktop:	10;
+	dw-gutter-percentage:	25;
+	
+	Idee durch den Artikel "Responsive Web Design" von Ethan Marcotte 
+	http://www.alistapart.com/articles/responsive-web-design
+	
+	und "Golden Grid System" von Joni Korpi
+	http://goldengridsystem.com/
+*/
+
+/* Layout für Mobilgeräte: 480 px oder weniger. */
+
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 87.36%;
+	padding-left: 1.82%;
+	padding-right: 1.82%;
+}
+#LayoutDiv1 {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+
+/* Layout für Tablet-PCs: 481 bis 768 px. Erbt Stile vom: Layout für Mobilgeräte. */
+
+@media only screen and (min-width: 481px) {
+.gridContainer {
+	width: 90.675%;
+	padding-left: 1.1625%;
+	padding-right: 1.1625%;
+}
+#LayoutDiv1 {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+}
+
+/* Desktoplayout: 769 bis maximal 1232 px.  Erbt Stile von: den Layouts für Mobilgeräte und Tablet-PCs. */
+
+@media only screen and (min-width: 769px) {
+.gridContainer {
+	width: 88.2%;
+	max-width: 1232px;
+	padding-left: 0.9%;
+	padding-right: 0.9%;
+	margin: auto;
+}
+#LayoutDiv1 {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+}

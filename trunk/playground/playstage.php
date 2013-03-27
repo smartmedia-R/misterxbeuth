@@ -3,7 +3,7 @@ include 'functionality/db_login_data.php';
 include 'functionality/renderPlaystage.php';
 session_start();
 if ($_SESSION['angemeldet'] == false) {
-	header('location: login.php');
+	header('location: index.html');
 	exit ;
 }
 $actor = $_SESSION["actor"];
@@ -37,6 +37,9 @@ if (!$con) {
 		<title>playstage</title>
 	</head>
 	<body>
+    <div id="back_to_my_page">
+        <input onclick="back_to_geheim()" id="buttons" name="submit" type="submit" size="20" value="Spiel beenden" />
+    </div>
 		<div id="wrapper" >
             <span id="countdown">...</span>
 			<input type="hidden" name="id" id="id" value="" />
@@ -81,6 +84,36 @@ if (!$con) {
                 }
 				?>
 			</div>
+
+            <div id="playersPosition">
+                <?php
+                switch($actor){
+                    case 'MisterX':
+                        $gegner1=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE Detectiv=1"));
+                        $ich=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE MisterX=1"));
+                        ?>
+                        <label>My Position:</label>
+                        <input type="text" size="2" id="<?php echo $ich["coordID"]?> "value="<?php echo $ich["coordID"]?>">
+
+                        <label> Detective 1:</label>
+                        <input type="text" size="2" id="<?php echo $gegner1['coordID']?> "value="<?php echo $gegner1['coordID']?>">
+
+                        <?php
+                        break;
+                    case 'Detectiv':
+                        //$gegner=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE MisterX=1"));
+                        $ich=mysql_fetch_array(mysql_query("SELECT coordID FROM tableSpieler WHERE Detectiv=1"));
+                        ?>
+                        <label>My Position:</label>
+                        <input type="text" size="2" id="<?php echo $ich["coordID"]?> "value="<?php echo $ich["coordID"]?>">
+
+                        <?php
+                        break;
+                }
+                ?>
+
+            </div>
+
 			<div id="playarea" >
 				<?php
 
@@ -118,9 +151,7 @@ if (!$con) {
 		        ?>
 			</div>
 		</div>
-        <div id="back_to_my_page">
-            <input onclick="back_to_geheim()" id="buttons" name="submit" type="submit" size="20" value="Zurück zum Login" />
-        </div>
+
         <script type="text/javascript">
             move.init();
         </script>

@@ -1,0 +1,2 @@
+Muss noch in die richtige Grösse gebracht werden(Bilder mit Transparenz, Logos)
+Wäre gut wenn der Background des Containers eine Farbe bekommt, dann sieht man es auch nicht, dass die Schrift so dicht am Rand oben steht.
